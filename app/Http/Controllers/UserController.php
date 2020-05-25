@@ -112,17 +112,20 @@ class UserController extends Controller
     }
 
     public function update(Request $request){
+        //Comprobar si el usuario esta indentificado
         $token = $request->header('Authorization');
         $jwtAuth = new \JwtAuth();
         $checkToken = $jwtAuth->checkToken($token);
 
         if($checkToken){
-            echo "<h1>Login correcto</h1>";
+            //Actualizar el usuario
         }else{
-            echo "<h1>Login incorrecto</h1>";
+            $data = array(
+                'status' => 'errors',
+                'code' => 404,
+                'message' => 'El usario no esta indentificado'
+            );
         }
-
-
-        die();
+        return response()->json($data, $data['code']);
     }
 }
