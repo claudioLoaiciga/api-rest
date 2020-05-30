@@ -8,6 +8,10 @@ class Post extends Model
 {
     protected $table = 'posts';
 
+    protected $fillable = [
+        'title', 'content', 'category_id'
+    ];
+
     //relacion muchos a uno
 
     public function user(){
